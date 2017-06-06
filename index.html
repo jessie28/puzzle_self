@@ -1,0 +1,191 @@
+<html>
+<head>
+    <title>三星拼图</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="format-detection" content="telephone=no">
+    <script>
+        if (/Android (\d+\.\d+)/.test(navigator.userAgent)) {
+            var version = parseFloat(RegExp.$1);
+            if (version > 2.3) {
+                var phoneScale = parseInt(window.screen.width) / 640;
+                document.write('<meta name="viewport" content="width=640, minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi">');
+            } else {
+                document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi">');
+            }
+        } else {
+            document.write('<meta name="viewport" content="width=640, user-scalable=no, target-densitydpi=device-dpi">');
+        }
+    </script>
+    <link rel="stylesheet" type="text/css" href="./css/core.css">
+    <link rel="stylesheet" type="text/css" href="./css/main.css">
+    <script type="text/javascript" src="./js/jquery.min.js"></script>
+    <script type="text/javascript" src="./js/main.js"></script>
+</head>
+<body>
+<!--music start
+<audio id="background" volume="100" autoplay="autoplay" loop="loop">
+    <source src="/video/back.mp3">
+</audio>-->
+<div id="container">
+    <div id="music"></div>
+    <div id="logo"></div>
+    <div id="ads">广告</div>
+    <section class="page" id="page1">
+        <div class="shadow"></div>
+        <div class="title"></div>
+        <div class="rule" id="btn_rule"></div>
+        <div class="prize" id="btn_prize_list"></div>
+        <div class="button" id="start_play">开始拼图</div>
+    </section>
+    <section class="page" id="page2">
+        <div class="shadow"></div>
+        <div class="puzzle_img puzzle1" data-img="3" id="puzzle1">
+            <div class="puz"></div>
+            <div class="puz_active"></div>
+        </div>
+        <div class="puzzle_img puzzle2" data-img="2" id="puzzle2">
+            <div class="puz"></div>
+            <div class="puz_active"></div>
+        </div>
+        <div class="puzzle_img puzzle3" data-img="1" id="puzzle3">
+            <div class="puz"></div>
+            <div class="puz_active"></div>
+        </div>
+        <div class="puzzle_img puzzle4" data-img="4" id="puzzle4">
+            <div class="puz"></div>
+            <div class="puz_active"></div>
+        </div>
+    </section>
+    <section class="page" id="page3">
+        <div class="layer"></div>
+        <div class="text">20秒内移动碎片，拼出海报 已用时：<span id="time">00</span>s</div>
+        <div class="box ori_img" id="ori_img"></div>
+        <div class="box puzzle" id="puzzle">
+            <ul></ul>
+            <div id="drag"></div>
+        </div>
+    </section>
+    <section class="page" id="page4">
+        <div class="text">
+            <p>凡参与游戏并拼图成功的用户</p>
+            <p>留下您的信息</p>
+            <p>即有机会得16G空调异形U盘</p>
+            <p>请填写真实信息方便我们联系</p>
+        </div>
+        <div class="info">
+            <div class="input"><span>姓名 ： </span><input type="text" name="username" value=""></div>
+            <div class="input"><span>电话 ： </span><input type="text" name="userphone" value=""></div>
+            <div class="input"><span>地址 ： </span><textarea name="useradd" id="" cols="1" rows="2" value=""></textarea></div>
+        </div>
+        <div class="button" id="submit_btn">提交</div>
+    </section>
+
+
+    <div class="dialog" id="dialog1">
+        <div class="bg"></div>
+        <div class="border">
+            <div class="close">×</div>
+            <div class="title">游戏规则</div>
+            <div class="sub">
+                <div class="text clearfix">
+                    <div class="num">1、</div>
+                    <div>20秒内拼图成功，则有机会中得奖品</div>
+                </div>
+                <div class="text clearfix">
+                    <div class="num">2、</div>
+                    <div>每周随机抽取20名用户，免费送出16G空调异形U盘</div>
+                </div>
+                <div class="text clearfix">
+                    <div class="num">3、</div>
+                    <div>活动时间：<p>2016.12.12日--2017.2.12日
+                （每周一公布上周中奖详情）</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dialog" id="dialog2">
+        <div class="bg"></div>
+        <div class="border">
+            <div class="close">×</div>
+            <div class="title">第一期中奖名单
+            <p>（12.12日-12.18日）</p>
+            </div>
+            <div class="sub">
+                <div class="text clearfix">
+                    <div class="name">姓名</div>
+                    <div class="phone">联系方式</div>
+                </div>
+                <div class="text clearfix">
+                    <div class="name">姓名</div>
+                    <div class="phone">189**** 0031</div>
+                </div>
+                <div class="text clearfix">
+                    <div class="name">姓名</div>
+                    <div class="phone">189**** 0031</div>
+                </div>
+                <div class="text clearfix">
+                    <div class="name">姓名</div>
+                    <div class="phone">189**** 0031</div>
+                </div>
+                <div class="text clearfix">
+                    <div class="name">姓名</div>
+                    <div class="phone">189**** 0031</div>
+                </div>
+                <div class="text clearfix">
+                    <div class="name">姓名</div>
+                    <div class="phone">189**** 0031</div>
+                </div>
+                <div class="text clearfix">
+                    <div class="name">姓名</div>
+                    <div class="phone">189**** 0031</div>
+                </div>
+                <div class="text clearfix">
+                    <div class="name">姓名</div>
+                    <div class="phone">189**** 0031</div>
+                </div>
+                <div class="text clearfix">
+                    <div class="name">姓名</div>
+                    <div class="phone">189**** 0031</div>
+                </div>
+                <div class="text clearfix">
+                    <div class="name">三个字三个字三个字三个字三个字</div>
+                    <div class="phone">189**** 0031</div>
+                </div>
+                <div class="text clearfix">
+                    <div class="name">三个字</div>
+                    <div class="phone">189**** 0031</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dialog" id="dialog3">
+        <div class="bg"></div>
+        <div class="drowcount"><img src="./image/3_text.png" alt=""></div>
+    </div>
+    <div class="dialog" id="dialog4">
+        <div class="bg"></div>
+        <div class="title_img"></div>
+        <div class="button" id="play_again_btn">再来一次</div>
+    </div>
+    <div class="dialog" id="dialog5">
+        <div class="bg"></div>
+        <div class="title_img"></div>
+        <div class="button" id="input_btn">参与中好礼</div>
+        <div class="button" id="share_btn">告诉小伙伴</div>
+    </div>
+    <div class="dialog" id="dialog6">
+        <div class="bg"></div>
+        <img src="./image/qrcode.png" alt="">
+        <div class="desc">
+            <p>凡拼图成功用户</p>
+            <p>长按二维码关注三星中央空调</p>
+            <p>在菜单“参与拼图中好礼”中</p>
+            <p>留下您的信息</p>
+            <p>即有机会得16G空调异形U盘</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
